@@ -1,0 +1,23 @@
+
+
+buildscript {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${CFG_BUILD_PLUGIN_VERSION}"
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

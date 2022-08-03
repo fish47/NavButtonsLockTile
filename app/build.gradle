@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    defaultConfig {
+        applicationId "com.fish47.navbuttonslocktile"
+        versionCode 1
+        versionName "0.1"
+        android {
+            compileSdkVersion Integer.parseInt(CFG_BUILD_COMPILE_SDK_VERSION)
+            buildToolsVersion CFG_BUILD_BUILD_TOOLS_VERSION
+            defaultConfig {
+                minSdkVersion 24
+                targetSdkVersion 24
+            }
+        }
+        lintOptions {
+            checkReleaseBuilds false
+        }
+    }
+
+    if (CFG_BUILD_KEYSTORE_STORE_PASSWORD != '' && CFG_BUILD_KEYSTORE_KEY_PASSWORD != '') {
+        signingConfigs {
+            release {
+                storeFile new File(project.rootDir, "keystore.jks")
+                storePassword CFG_BUILD_KEYSTORE_STORE_PASSWORD
+                keyAlias 'fish47'
+                keyPassword CFG_BUILD_KEYSTORE_KEY_PASSWORD
+            }
+        }
+        buildTypes {
+            release {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+}
+
+dependencies {
+    compileOnly 'de.robv.android.xposed:api:82'
+}
